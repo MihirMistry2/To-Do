@@ -1,0 +1,35 @@
+#brand {
+  background-color: #2f2e2c;
+}
+
+#brand h3,
+.nav-link {
+  color: #bcefa6;
+}
+
+#brand .btn {
+  background-color: #bcefa6;
+  border-radius: 0;
+  font-weight: bold;
+}
+
+#brand .btn:hover {
+  background-color: #a9da98;
+}
+
+.navbar .list-inline .list-inline-item:hover {
+  border-bottom: 2px solid #bcefa6;
+}
+
+nav {
+  background-color: #273d54;
+  box-shadow: 0 3px 6px 3px rgba(0, 0, 0, 0.2);
+}
+
+.active {
+  border-bottom: 2px solid #bcefa6;
+}
+
+.nav-link {
+  cursor: pointer;
+}

@@ -1,0 +1,120 @@
+<section id="top">
+  <div class="container vh-100">
+    <div class="row h-100 justify-content-center">
+      <div class="col-md-8 col-12">
+        <div *ngIf="message" class="alert alert-success rounded-0" role="alert">
+          {{ message }}
+          <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            class="form-control"
+            name="search"
+            [(ngModel)]="searchText"
+            autocomplete="off"
+            placeholder="Search"
+          />
+          <div class="input-group-append">
+            <span class="input-group-text">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </span>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-hover table-dark">
+            <thead>
+              <tr>
+                <th>Complete</th>
+                <th>Description</th>
+                <th class="text-right">Create Date</th>
+                <th class="text-right" colspan="2">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngIf="isEmty" class="border-0 text-center">
+                <td colspan="4">
+                  <h3 class="m-4">No Record</h3>
+                </td>
+              </tr>
+              <tr *ngFor="let todo of todos | filter: searchText">
+                <ng-container *ngIf="inProgress">
+                  <td *ngIf="!todo.is_done" class="border-0">
+                    {{ todo.is_done === 1 ? "Yes" : "No" }}
+                  </td>
+                  <td *ngIf="!todo.is_done" class="border-0">
+                    {{ todo.description }}
+                  </td>
+                  <td *ngIf="!todo.is_done" class="border-0 text-right">
+                    {{ todo.created_at | date }}
+                  </td>
+                  <td *ngIf="!todo.is_done" class="border-0 text-right">
+                    <button
+                      (click)="onEditTodo(todo.id)"
+                      class="btn fa fa-pencil mx-2"
+                    ></button>
+                    <button
+                      (click)="onDeleteTodo(todo.id)"
+                      class="btn fa fa-times mx-2"
+                    ></button>
+                  </td>
+                </ng-container>
+
+                <ng-container *ngIf="onComplete">
+                  <td *ngIf="todo.is_done" class="border-0">
+                    {{ todo.is_done === 1 ? "Yes" : "No" }}
+                  </td>
+                  <td *ngIf="todo.is_done" class="border-0">
+                    {{ todo.description }}
+                  </td>
+                  <td *ngIf="todo.is_done" class="border-0 text-right">
+                    {{ todo.created_at | date }}
+                  </td>
+                  <td *ngIf="todo.is_done" class="border-0 text-right">
+                    <button
+                      (click)="onEditTodo(todo.id)"
+                      class="btn fa fa-pencil mx-2"
+                    ></button>
+                    <button
+                      (click)="onDeleteTodo(todo.id)"
+                      class="btn fa fa-times mx-2"
+                    ></button>
+                  </td>
+                </ng-container>
+
+                <ng-container *ngIf="allTasks">
+                  <td class="border-0">
+                    {{ todo.is_done === 1 ? "Yes" : "No" }}
+                  </td>
+                  <td class="border-0">
+                    {{ todo.description }}
+                  </td>
+                  <td class="border-0 text-right">
+                    {{ todo.created_at | date }}
+                  </td>
+                  <td class="border-0 text-right">
+                    <button
+                      (click)="onEditTodo(todo.id)"
+                      class="btn fa fa-pencil mx-2"
+                    ></button>
+                    <button
+                      (click)="onDeleteTodo(todo.id)"
+                      class="btn fa fa-times mx-2"
+                    ></button>
+                  </td>
+                </ng-container>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,7 @@
+PORT = 8131
+DB_PORT = 3333
+DB_HOST = localhost
+DB_USER = root
+DB_PASS = 
+MYSQL_DB = test
+SECRET_KEY = secretkey

@@ -1,0 +1,58 @@
+<section id="login">
+  <div class="container vh-100">
+    <div class="row h-100 d-flex justify-content-center align-items-center">
+      <!-- login card -->
+      <div class="card shadow col-lg-4 col-md-6 col-sm-10 col-11">
+        <div class="card-header">
+          <h3>login</h3>
+        </div>
+        <div class="card-body">
+          <div *ngIf="isInvalidLogin" class="text-danger text-center mt-0 mb-2">
+            <small>{{ errorMessage }}</small>
+          </div>
+          <form>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                placeholder="Your email"
+                name="userEmail"
+                [(ngModel)]="userEmail"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                placeholder="Your Password"
+                name="userPassword"
+                [(ngModel)]="userPassword"
+              />
+            </div>
+
+            <div class="form-group">
+              <button
+                class="btn btn-block mt-4 shadow-none"
+                (click)="onLogin()"
+              >
+                Login
+              </button>
+            </div>
+
+            <div class="form-group text-center mb-0">
+              <span
+                >Don't have an account? Sign up
+                <a routerLink="/signup">here</a></span
+              >
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

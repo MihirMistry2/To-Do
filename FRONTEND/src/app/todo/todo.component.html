@@ -1,0 +1,63 @@
+<section id="top">
+  <div class="container vh-100">
+    <div class="row h-100 justify-content-center">
+      <div class="col-md-8 col-12">
+        <div class="card shadow">
+          <div class="card-body">
+            <form #todoForm="ngForm" (ngSubmit)="saveTodo()">
+              <div class="form-group">
+                <label for="description">Description</label>
+                <textarea
+                  type="description"
+                  class="form-control"
+                  id="description"
+                  placeholder="Description"
+                  rows="5"
+                  name="description"
+                  minlength="5"
+                  [(ngModel)]="todo.description"
+                ></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="date">Date</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="date"
+                  name="created_at"
+                  [ngModel]="todo.created_at | date: 'yyyy-MM-dd'"
+                  (ngModelChange)="todo.created_at = $event"
+                  disabled
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="done">Task Completed</label>
+                <select
+                  class="form-control"
+                  name="is_done"
+                  id="done"
+                  [(ngModel)]="todo.is_done"
+                >
+                  <option value="1" [selected]="todo.is_done == 1">Yes</option>
+                  <option value="0" [selected]="todo.is_done == 0">No</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <button class="btn mt-4 shadow-none" type="submit">Save</button>
+                <button
+                  class="btn mt-4 float-right shadow-none"
+                  routerLink="../"
+                >
+                  Back
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
