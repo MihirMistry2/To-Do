@@ -145,7 +145,7 @@ module.exports = {
             }
         } catch (e) {
             if (e === 'No record') {
-                res.status(404).json({
+                return res.status(404).json({
                     success: 0,
                     data: e,
                 });
