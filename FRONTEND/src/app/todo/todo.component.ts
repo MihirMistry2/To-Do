@@ -12,6 +12,8 @@ export class TodoComponent implements OnInit {
   id: number;
   userName: string;
   todo: Todo;
+  isError: boolean = false;
+  errorMessage: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -31,16 +33,21 @@ export class TodoComponent implements OnInit {
   }
 
   saveTodo() {
-    if (+this.id === -1) {
-      this.todoDataService.createTodo(this.todo).subscribe((response) => {
-        this.router.navigate(['/todos']);
-      });
-    } else {
-      this.todoDataService
-        .updateTodo(this.id, this.todo)
-        .subscribe((response) => {
+    if (this.todo.description != '') {
+      if (+this.id === -1) {
+        this.todoDataService.createTodo(this.todo).subscribe((response) => {
           this.router.navigate(['/todos']);
         });
+      } else {
+        this.todoDataService
+          .updateTodo(this.id, this.todo)
+          .subscribe((response) => {
+            this.router.navigate(['/todos']);
+          });
+      }
+    } else {
+      this.isError = true;
+      this.errorMessage = 'Description can not be emplty';
     }
   }
 }
