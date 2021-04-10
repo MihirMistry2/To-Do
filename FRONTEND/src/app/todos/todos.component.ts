@@ -25,6 +25,9 @@ export class TodosComponent implements OnInit {
   onComplete: boolean = false;
   isEmty: boolean = false;
 
+  p: number = 1;
+  totalLength: number = 5;
+
   constructor(
     private router: Router,
     private todoDataService: TodoDataService

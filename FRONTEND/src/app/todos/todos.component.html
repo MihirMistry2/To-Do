@@ -44,7 +44,13 @@
                   <h3 class="m-4">No Record</h3>
                 </td>
               </tr>
-              <tr *ngFor="let todo of todos | filter: searchText">
+              <tr
+                *ngFor="
+                  let todo of todos
+                    | filter: searchText
+                    | paginate: { itemsPerPage: totalLength, currentPage: p }
+                "
+              >
                 <ng-container *ngIf="inProgress">
                   <td *ngIf="!todo.is_done" class="border-0">
                     {{ todo.is_done === 1 ? "Yes" : "No" }}
@@ -110,6 +116,13 @@
                     ></button>
                   </td>
                 </ng-container>
+              </tr>
+              <tr class="border-0">
+                <td colspan="4">
+                  <pagination-controls
+                    (pageChange)="p = $event"
+                  ></pagination-controls>
+                </td>
               </tr>
             </tbody>
           </table>
