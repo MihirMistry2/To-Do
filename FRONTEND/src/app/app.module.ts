@@ -15,6 +15,7 @@ import { TodosComponent } from './todos/todos.component';
 import { TodoComponent } from './todo/todo.component';
 import { TokenInterceptorService } from './service/token-interceptor.service';
 import { FilterPipe } from './todos/filter.pipe';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,13 @@ import { FilterPipe } from './todos/filter.pipe';
     TodoComponent,
     FilterPipe,
   ],
-  imports: [BrowserModule, HttpClientModule, AppRoutingModule, FormsModule],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    FormsModule,
+    NgxPaginationModule,
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
