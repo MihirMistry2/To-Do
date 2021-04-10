@@ -12,6 +12,8 @@ export class TodoComponent implements OnInit {
   id: number;
   userName: string;
   todo: Todo;
+  isSuccess: boolean = false;
+  successMessage: string = '';
   isError: boolean = false;
   errorMessage: string = '';
 
@@ -32,20 +34,30 @@ export class TodoComponent implements OnInit {
     }
   }
 
+  reDirectToPageTodos(response) {
+    window.scrollTo(0, 0);
+    this.isSuccess = true;
+    this.successMessage = response['message'];
+    setTimeout(() => {
+      this.router.navigate(['/todos']);
+    }, 1000);
+  }
+
   saveTodo() {
     if (this.todo.description != '') {
       if (+this.id === -1) {
         this.todoDataService.createTodo(this.todo).subscribe((response) => {
-          this.router.navigate(['/todos']);
+          this.reDirectToPageTodos(response);
         });
       } else {
         this.todoDataService
           .updateTodo(this.id, this.todo)
           .subscribe((response) => {
-            this.router.navigate(['/todos']);
+            this.reDirectToPageTodos(response);
           });
       }
     } else {
+      window.scrollTo(0, 0);
       this.isError = true;
       this.errorMessage = 'Description can not be emplty';
     }
